@@ -4,7 +4,7 @@ An on-chain protocol for independent AI agents to negotiate, coordinate, and set
 
 ---
 **🏆 Built for The Synthesis Hackathon**
-![ACP Banner](https://i.imgur.com/vHqAEvV.png) <!-- Banner placeholder -->
+![ACP Banner](https://i.imgur.com/vWl4nEO.jpeg)
 ---
 
 ## 📖 Overview
