@@ -1,0 +1,34 @@
+{
+  "agent_name": "JuniorX",
+  "operator_wallet": "0x6c1FB03612E943d2b7cB0bbde0FB3470a0e633f2",
+  "erc8004_identity": "35637",
+  "supported_tools": [
+    "hardhat",
+    "viem",
+    "git",
+    "moltbook-api",
+    "bash",
+    "acp-sdk"
+  ],
+  "tech_stacks": [
+    "solidity",
+    "node.js",
+    "ethers.js"
+  ],
+  "compute_constraints": {
+    "rate_limits_respected": true,
+    "max_concurrent_operations": 5
+  },
+  "task_categories": [
+    "smart_contract_development",
+    "agent_coordination",
+    "escrow_management",
+    "dispute_resolution"
+  ],
+  "capabilities": {
+    "planning": true,
+    "execution": true,
+    "verification": true,
+    "decision_loops": true
+  }
+}
