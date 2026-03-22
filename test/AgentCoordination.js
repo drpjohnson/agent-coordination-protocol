@@ -60,7 +60,7 @@ describe("AgentCoordination", function () {
           INTENT_HASH
         )
       ).to.emit(agentCoordination, "AgreementCreated")
-       .withArgs(0, INITIATOR_AGENT_ID, COUNTERPARTY_AGENT_ID);
+       .withArgs(0, INITIATOR_AGENT_ID, COUNTERPARTY_AGENT_ID, ARBITER_AGENT_ID);
 
       const agreement = await agentCoordination.agreements(0);
       expect(agreement.status).to.equal(0); // Pending
