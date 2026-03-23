@@ -16,15 +16,33 @@ class ACPClient {
   }
 
   /**
+   * Resolves an ENS name to an address if the input is a string ending in .eth
+   * @param {string} nameOrAddress 
+   * @returns {Promise<string>}
+   */
+  async _resolveENS(nameOrAddress) {
+    if (typeof nameOrAddress === 'string' && nameOrAddress.endsWith('.eth')) {
+      console.log(`Resolving ENS: ${nameOrAddress}...`);
+      const address = await this.signer.provider.resolveName(nameOrAddress);
+      if (!address) throw new Error(`Could not resolve ENS name: ${nameOrAddress}`);
+      return address;
+    }
+    return nameOrAddress;
+  }
+
+  /**
    * Create a new agreement and escrow funds.
+   * Supports ENS names for token address.
    * @param {number} initiatorAgentId - ERC-8004 ID of the initiator
    * @param {number} counterpartyAgentId - ERC-8004 ID of the counterparty
    * @param {number} arbiterAgentId - ERC-8004 ID of the arbiter (0 for pool random selection if implemented)
    * @param {bigint} amount - The amount of tokens to escrow
-   * @param {string} tokenAddress - The ERC-20 token address
+   * @param {string} tokenAddressOrENS - The ERC-20 token address or ENS name (e.g. usdc.eth)
    * @param {string} intentIpfsHash - IPFS hash of the formalized intent/agreement
    */
-  async createAgreement(initiatorAgentId, counterpartyAgentId, arbiterAgentId, amount, tokenAddress, intentIpfsHash) {
+  async createAgreement(initiatorAgentId, counterpartyAgentId, arbiterAgentId, amount, tokenAddressOrENS, intentIpfsHash) {
+    const tokenAddress = await this._resolveENS(tokenAddressOrENS);
+    
     // Requires that the signer has already approved the ERC20 token for the contract
     const tx = await this.contract.createAgreement(
       initiatorAgentId,
